@@ -375,6 +375,36 @@ void alternatingSplitTest()
 	printList(a);cout<<"second"<<endl; printList(b);
 }
 
+struct node* shuffleMerge(struct node* a, struct node* b)
+{
+	struct node* mergedHead = NULL; struct node* temp = NULL;
+	struct node* aCurrent = a; struct node* bCurrent = b;
+	while(a != NULL && b != NULL){
+		moveNode(&temp, &a);
+		append(&mergedHead, &temp);
+		moveNode(&temp, &b);
+		append(&mergedHead, &temp);
+	}
+	if(a != NULL){
+		append(&mergedHead, &a);
+	}
+	if(b != NULL){
+		append(&mergedHead, &b);
+	}
+	return mergedHead;
+}
+
+void shuffleMergeTest()
+{
+	struct node* a = buildOneTwoThree();
+	struct node* b = buildOneTwoThree();
+	push(&b,5);
+	push(&b,6);
+	push(&b,8);	
+	struct node* head = shuffleMerge(a,b);
+	printList(head);
+}
+
 int main()
 {
 	//basicsCaller();
@@ -388,7 +418,8 @@ int main()
 	//frontBackSplitTest();
 	//removeDuplicatesTest();
 	//moveNodeTest();
-	alternatingSplitTest();
+	//alternatingSplitTest();
+	shuffleMergeTest();
 	return 0;
 }
 
