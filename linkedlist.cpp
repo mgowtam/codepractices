@@ -354,6 +354,27 @@ void moveNodeTest()
 	printList(b);
 }
 
+void alternatingSplit(struct node* source, struct node** aRef, struct node** bRef)
+{
+	struct node* temp = source;
+	while(source!=NULL){
+		moveNode(aRef, &source);
+		//printList(source);cout<<endl;
+		if(source!=NULL){
+			moveNode(bRef, &source);	
+		}
+	}
+}
+
+void alternatingSplitTest()
+{
+	struct node* head = buildOneTwoThree();
+	struct node* a = NULL; struct node* b = NULL;
+	printList(head);cout<<endl;
+	alternatingSplit(head, &a, &b);
+	printList(a);cout<<"second"<<endl; printList(b);
+}
+
 int main()
 {
 	//basicsCaller();
@@ -366,8 +387,8 @@ int main()
 	//appendTest();
 	//frontBackSplitTest();
 	//removeDuplicatesTest();
-	moveNodeTest();
-	
+	//moveNodeTest();
+	alternatingSplitTest();
 	return 0;
 }
 
