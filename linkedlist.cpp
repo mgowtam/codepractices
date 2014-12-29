@@ -336,7 +336,7 @@ void removeDuplicatesTest()
 	printList(a);
 }
 
-void moveNode(struct node** destRef, struct node** sourceRef)
+void moveNode(struct node** destRef, struct node** sourceRef) //move node from front of source to fornt of destination
 {
 	struct node* temp = *destRef;
 	*destRef = *sourceRef;
@@ -354,7 +354,7 @@ void moveNodeTest()
 	printList(b);
 }
 
-void alternatingSplit(struct node* source, struct node** aRef, struct node** bRef)
+void alternatingSplit(struct node* source, struct node** aRef, struct node** bRef) //split into 2 sublists with alternate elements going into each list
 {
 	struct node* temp = source;
 	while(source!=NULL){
@@ -375,7 +375,7 @@ void alternatingSplitTest()
 	printList(a);cout<<"second"<<endl; printList(b);
 }
 
-struct node* shuffleMerge(struct node* a, struct node* b)
+struct node* shuffleMerge(struct node* a, struct node* b) //merge two lists taking elements alternately from each list
 {
 	struct node* mergedHead = NULL; struct node* temp = NULL;
 	struct node* aCurrent = a; struct node* bCurrent = b;
