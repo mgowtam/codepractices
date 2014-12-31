@@ -284,7 +284,8 @@ void frontBackSplit(struct node* source, struct node** frontRef, struct node** b
 			slow = slow->next;
 		} else {
 			*backRef = slow->next;
-			slow->next = NULL;
+			//printList(*backRef);
+			//slow->next = NULL;
 			break;
 		}
 	}
@@ -293,13 +294,15 @@ void frontBackSplit(struct node* source, struct node** frontRef, struct node** b
 		*backRef = slow->next;
 		slow->next = NULL;
 	}
+	slow->next = NULL;
 }
 
 void frontBackSplitTest()
 {
+	//struct node* a = NULL;
 	struct node* a = buildOneTwoThree();
 	struct node* b = buildOneTwoThree();
-	push(&a, 5);
+	push(&a, 5); //push(&a, 6);
 	append(&a, &b);
 	cout<<"after appending"<<endl;
 	printList(a);
@@ -436,9 +439,28 @@ void sortedMergeTest()
 	printList(head);
 }
 
-void MergeSort(struct node* headRef)
+void mergeSort(struct node** headRef) //Merge Sort on linked list
 {
+	if(length(*headRef) > 1){
+		struct node* front = NULL; struct node* back = NULL;
+		frontBackSplit(*headRef, &front, &back);
+		//printList(front); printList(back);
+		mergeSort(&front);
+		mergeSort(&back);
+		*headRef = sortedMerge(front, back);
+	} 
+}
 
+void mergeSortTest()
+{
+	struct node* a = buildOneTwoThree();
+	push(&a,5);
+	push(&a,6);
+	push(&a,8);	
+	printList(a);
+	mergeSort(&a);
+	//struct node* head = shuffleMerge(a,b);
+	printList(a);
 }
 
 int main()
@@ -456,7 +478,8 @@ int main()
 	//moveNodeTest();
 	//alternatingSplitTest();
 	//shuffleMergeTest();
-	sortedMergeTest();
+	//sortedMergeTest();
+	mergeSortTest();
 	return 0;
 }
 
