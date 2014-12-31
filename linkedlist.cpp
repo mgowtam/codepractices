@@ -405,6 +405,42 @@ void shuffleMergeTest()
 	printList(head);
 }
 
+struct node* sortedMerge(struct node* a, struct node* b) //takes 2 sorted lists and returns merged list
+{
+	struct node* mergedHead = NULL; struct node* old = NULL; struct node* temp = NULL;
+	struct node* acurrent = a; struct node* bcurrent = b;
+	while(a != NULL && b != NULL){
+		if( a->data <= b->data){
+			moveNode(&temp, &a);
+			append(&mergedHead, &temp);
+		} else {
+			moveNode(&temp, &b);
+			append(&mergedHead, &temp);
+		}
+	}
+	if(a != NULL){
+		append(&mergedHead, &a);
+	}
+	if(b != NULL){
+		append(&mergedHead, &b);
+	}
+	return mergedHead;
+}
+
+void sortedMergeTest()
+{
+	struct node* a = buildOneTwoThree();
+	struct node* b = buildOneTwoThree();
+	
+	struct node* head = sortedMerge(a,b);
+	printList(head);
+}
+
+void MergeSort(struct node* headRef)
+{
+
+}
+
 int main()
 {
 	//basicsCaller();
@@ -419,7 +455,8 @@ int main()
 	//removeDuplicatesTest();
 	//moveNodeTest();
 	//alternatingSplitTest();
-	shuffleMergeTest();
+	//shuffleMergeTest();
+	sortedMergeTest();
 	return 0;
 }
 
