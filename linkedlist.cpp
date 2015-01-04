@@ -448,7 +448,7 @@ void mergeSort(struct node** headRef) //Merge Sort on linked list
 		mergeSort(&front);
 		mergeSort(&back);
 		*headRef = sortedMerge(front, back);
-	} 
+	}
 }
 
 void mergeSortTest()
